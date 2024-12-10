@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Domain Tools</title>
+    <!-- <link rel="stylesheet" href="index.css" /> -->
+    <style>
+
+      .maindiv {
+        margin: auto;
+        margin-top: 10px;
+        width: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        
+
+      }
+      .maindiv1 {
+        margin: auto;
+        width: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        /* padding: 20px; */
+        /* box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
+          rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
+          rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
+          rgba(42, 51, 70, 0.04) 0px 6px 6px -3px,
+          rgba(14, 63, 126, 0.04) 0px 12px 12px -6px,
+          rgba(14, 63, 126, 0.04) 0px 24px 24px -12px; */
+        text-align: center;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        border-radius: 15px;
+      }
+
+      .maindiv1 div {
+        margin: auto;
+      }
+
+      .inputbox {
+        border: 1px solid gray;
+        /* width: auto; */
+        height: 20px;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+          rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        padding: 5px;
+        text-align: center;
+      }
+
+      .submit_btn {
+        /* width: 80px;
+        height: 25px; */
+        border-radius: 5px;
+        border: none;
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+        padding: 7px;
+      }
+
+      .tableone {
+        margin: auto;
+        width: 30%;
+        border: 1px solid blue;
+
+      }
+
+      .tableone th {
+        background-color: blue;
+        color: white;
+
+      }
+
+   #navbardiv {
+    margin: 0;
+    /* height: 20px; */
+    padding: 7px;
+    /* background-color: gray; */
+    /* color: white; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+   }
+
+   #navbardiv>:nth-child(2){
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    row-gap: 10px;
+    align-items: center;
+    align-content: center;
+    /* border: 1px solid red ; */
+    background-color: blue;
+   }
+
+   #navbardiv>:nth-child(2)>div {
+    margin: 0;
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+    text-align: center;
+   }
+
+   #navbardiv a {
+    text-decoration: none;
+    color: white;
+
+   }
+      
+    </style>
+  </head>
+  <body>
+    <!-- <div id="navbardiv">
+      <div><p>logo here</p></div>
+      <div>
+        <div><a href="/">Home</a></div>
+      <div><a href="#">About Us</a></div>
+      <div><a href="#">Contact Us</a></div>
+      <div><a href="#">Terms Of Uses</a></div>
+    </div>
+    </div>
+     -->
+    <div><p>Your IP address is: {{ data }}</p></div>
+
+
+ <div class="maindiv">   <div class="maindiv1">
+      <div>
+        <h3>Ping Test</h3>
+        <form action="{% url 'ping_test' %}" method="GET">
+          <!-- {% csrf_token %} -->
+          <input
+            class="inputbox"
+            type="text"
+            placeholder="add IP or hostname"
+            name="pinghost"
+          />
+          <br /><br />
+          <input class="submit_btn" type="submit" value="Check" />
+        </form>
+      </div>
+
+      <!-- Forward DNS Lookkup form -->
+
+      <div>
+        <h3>DNS lookup</h3>
+        <form action="{% url 'dns_lookup' %}" method="get">
+          <input
+            class="inputbox"
+            type="text"
+            placeholder="Domain or Hostname here"
+            name="domain_name"
+          />
+          <br />
+          <br />
+          <input class="submit_btn" type="submit" value="Check" />
+        </form>
+      </div>
+
+      <div>
+        <h3>MX Check</h3>
+
+        <form action="{% url 'mx_check_view' %}" method="get">
+          <input
+            class="inputbox"
+            type="text"
+            placeholder="Domain name here"
+            name="mxdomain_name"
+          />
+          <br />
+          <br />
+          <input class="submit_btn" type="submit" value="Check" />
+        </form>
+      </div>
+      <!-- Reverse DNS Check for IPv4 -->
+        <div>
+        <h3>IPv4 Reverse Lookup</h3>
+
+        <form action="{%url 'reverse_ip_lookup' %}" method="get">
+          <input
+            class="inputbox"
+            type="text"
+            placeholder="Ipv4 here"
+            name="ip_address"
+          />
+          <br />
+          <br />
+          <input class="submit_btn" type="submit" value="Check" />
+        </form>
+      </div>
+
+      <!-- SPF Check  -->
+       <div>
+        <h3>SPF Check</h3>
+
+        <form action="{% url 'spf_check' %}" method="get">
+          <input
+            class="inputbox"
+            type="text"
+            placeholder="Domain Name Here"
+            name="spf_domain"
+          />
+          <br />
+          <br />
+          <input class="submit_btn" type="submit" value="Check" />
+        </form>
+      </div>
+      <div>
+        <h3>DKIM Check</h3>
+
+        <form action="{%url 'dkim_check'%}" method="get">
+          <input
+            class="inputbox"
+            type="text"
+            placeholder="Selector value"
+            name="dkim_selector"
+          />
+          <input
+            class="inputbox"
+            type="text"
+            placeholder="Domain Name here"
+            name="dkim_domain"
+          />
+          
+          <br />
+          <br />
+          <input class="submit_btn" type="submit" value="Check" />
+        </form>
+      </div>
+      <br /><br /><br />
+
+      
+    </div>
+    <div
+      style="
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      "
+    >
+      <!-- ping test result -->
+      {{ping_output|linebreaks}}
+
+      <!-- DNS lookup result -->
+       {% if ip_addresses %}
+       Domain <span style="color: green; font-weight: bold;">{{ domain_name }}</span> is resolving to
+       {% endif %}
+      
+       {% for ip_address in ip_addresses %}
+      <p style="color: red;">
+         
+        {{ ip_address }}
+      </p>
+      {% endfor %}
+
+      
+
+      
+      
+
+      <!-- MX lookup result -->
+      {% if mx_records %}
+    <h2>MX Records for {{ mxdomain_name }}</h2>
+    
+     <table class="tableone">
+        <thead>
+          <th>MX Host</td>
+          <th>Priority</td>
+        </thead>
+     </table>
+     {% endif %}
+      {% for mx_record in mx_records %}
+            <table class="tableone">
+         <tr>
+          <td>{{ mx_record.exchange }}</td>
+          <td>{{ mx_record.preference }}</td>
+        </tr>
+      </table>
+      
+      {% endfor %}
+      
+      <!-- IPv4 reverse check  -->
+
+      {% if reversed_dns %}
+      <h2><span style="color: green;"> {{ reversed_dns }}</span></h2>
+    
+{% else %}
+    <h3>{{ error_message }}</h3>
+{% endif %}
+
+<!-- SPF Check Code -->
+
+{% if spf_domain_name %}
+<h2>SPF Check for {{ spf_domain_name }}</h2>
+<p>{{ spf_record }}</p>
+
+{% endif %}
+
+
+<!-- DKIM check result -->
+
+{% if dkim_domain_name %}
+<div >
+          <h3>DKIM Public Key for <span style="color: orangered;">{{ dkim_domain_name }}</span></h3>
+          <pre style="word-wrap: break-word; word-break: break-all; text-wrap: wrap; padding: 20px; font-size: 14px;"> {{ dkim_public_key }} </pre>
+        </div>
+       
+    {% else %}
+         <p>{{ error_message }}</p>
+    {% endif %}
+
+
+    <!-- Ad block  -->
+
+    <img style="width: 450px; height: auto; " src="https://img.freepik.com/free-vector/creative-coming-soon-teaser-background_23-2148894969.jpg" alt="">
+
+      <br><br><br>
+    </div></div>
+    
+  </body>
+</html>

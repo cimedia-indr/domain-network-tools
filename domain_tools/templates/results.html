@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Results Page</title>
+    <style>
+      .results {
+        margin: auto;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+          rgb(209, 213, 219) 0px 0px 0px 1px inset;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="results">
+      <br /><br />
+      {{ping_output|linebreaks}} {% for ip_address in ip_addresses %}
+      <h2>
+        Domain {{ domain_name }} is resolving to <br /><br />
+        {{ ip_address }}
+      </h2>
+      {% endfor %}<br /><br />
+    </div>
+
+    <!-- {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% else %}
+    <h2>Results for {{ domain_name }}</h2>
+    <ul>
+      {% for ip_address in ip_addresses %}
+      <li>{{ ip_address }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} -->
+  </body>
+</html>
